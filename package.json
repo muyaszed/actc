@@ -1,0 +1,17 @@
+{
+  "name": "actopw",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Convert AC from Jira to a skeleton playwrigt test",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "convert": "node main.js"
+  },
+  "author": "yazed jamal",
+  "license": "ISC",
+  "dependencies": {
+    "fast-xml-parser": "^4.2.7",
+    "jsdom": "^22.1.0"
+  }
+}
