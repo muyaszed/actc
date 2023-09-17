@@ -1,27 +1,17 @@
 import { XMLParser } from 'fast-xml-parser';
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 import { JSDOM } from 'jsdom';
+import config from 'config';
 
-type Arguments = (string | null)[];
-type ok = string | null;
-
-
-const args: Arguments = process.argv.slice(2);
-const folderName = args[0];
-const fileName = args[1];
 let fileContent: string;
-const outputFolder = args[2] || './output';
-const testName = args[3] || 'test'
+const xmlFolderName = config.get('xml.folder');
+const xmlFileName = config.get('xml.file');
+const outputFolder = config.get('output.folder');
+const outputFile = config.get('output.file');
 
 export const main = () => {
-    try {
-
-        // Argument validation
-        if (!folderName) {
-            throw new Error('Need to specify the XMl folder location');
-        }
-    
-        const xmlFile = readFileSync(`${process.cwd()}${folderName}/${fileName}.xml`, 'utf8');
+    try {    
+        const xmlFile = readFileSync(`${process.cwd()}${xmlFolderName}/${xmlFileName}`, 'utf8');
         const parser = new XMLParser();
         const json = parser.parse(xmlFile);
         const dom = new JSDOM(json.rss.channel.item.description);
@@ -70,11 +60,11 @@ export const main = () => {
             '',
         ].join('\n');
         
-        if (!existsSync(outputFolder)) {
-            mkdirSync(outputFolder, { recursive: true });
+        if (!existsSync(outputFolder as string)) {
+            mkdirSync(outputFolder as string, { recursive: true });
         }
     
-        writeFileSync(`${outputFolder}/${testName}.tsx`, fileContent);
+        writeFileSync(`${outputFolder}/${outputFile}`, fileContent);
         console.log('Test file created successfully');
     } catch(error: unknown) {
         if (error instanceof Error) {
@@ -83,4 +73,4 @@ export const main = () => {
     }
 };
 
-
+main();

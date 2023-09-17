@@ -1,0 +1,10 @@
+{
+    "xml": {
+        "folder": "/xml",
+        "file": "test.xml"
+    },
+    "output": {
+        "folder": "./output",
+        "file": "test.ts"
+    }
+}
