@@ -1,7 +1,7 @@
 {
   "name": "actc",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Convert AC from Jira to a skeleton test case. Currently only support playwright",
   "main": "./lib/main.js",
   "bin": {
