@@ -165,14 +165,14 @@ const sortGWT = (listOfClauses: string[]): Clause[] => {
 
 const generateTestCases = (clauses: Clause[], sourceJSON: any) => (
     [
-        `test.describe('${sourceJSON.rss.channel.item.title}', () => {`,
+        `describe('${sourceJSON.rss.channel.item.title}', () => {`,
 
         clauses.map(given => (
             [
-                `   test.describe('${given.desc}', () => {`,
+                `   describe('${given.desc}', () => {`,
                 (given.child || []).map(when => (
                     [
-                        `       test.describe('${when.desc}', () => {`,
+                        `       describe('${when.desc}', () => {`,
                         (when.child || []).map(then => (
                             [
                                 `           test('${then.desc}');`,
