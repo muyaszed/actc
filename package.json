@@ -16,7 +16,8 @@
     "build": "tsc",
     "convert": "node ./lib/main.js",
     "dev": "npm run build && npm run convert",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "test-run": "node ./bin/script.js"
   },
   "author": "yazed jamal",
   "license": "MIT",

@@ -12,7 +12,6 @@ interface Clause {
     child: Clause[] | null;
 }
 
-
 const xmlFolderName = config.get('xml.folder');
 const xmlFileName = config.get('xml.file');
 const outputFolder = config.get('output.folder');
@@ -190,7 +189,7 @@ const generateTestCases = (clauses: Clause[], sourceJSON: any) => (
     ].join('\n')
 );
 
-export const main = () => {
+export const main = (args: string[]) => {
     try {    
         const xmlFile = readFileSync(`${process.cwd()}${xmlFolderName}/${xmlFileName}`, 'utf8');
         const { items: includedItems, json } = includeACRelatedStringOnly(xmlFile);
@@ -200,8 +199,13 @@ export const main = () => {
         if (!existsSync(outputFolder as string)) {
             mkdirSync(outputFolder as string, { recursive: true });
         }
+
+        const outputFileName = args[0];
+        console.log('Filename', outputFileName);
+
+        const fileName = outputFileName || outputFile;
     
-        writeFileSync(`${outputFolder}/${outputFile}`, fileContent);
+        writeFileSync(`${outputFolder}/${fileName}`, fileContent);
         console.log('Test file created successfully');
     } catch(error: unknown) {
         if (error instanceof Error) {
