@@ -201,10 +201,7 @@ export const main = (args: string[]) => {
         }
 
         const outputFileName = args[0];
-        console.log('Filename', outputFileName);
-
         const fileName = outputFileName || outputFile;
-    
         writeFileSync(`${outputFolder}/${fileName}`, fileContent);
         console.log('Test file created successfully');
     } catch(error: unknown) {
