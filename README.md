@@ -1,4 +1,4 @@
-![Header logo](/src/header-log.png?raw=true)
+![Header logo](./src/header-logo.png?raw=true)
 
 ## Quick start
 
